@@ -1,16 +1,19 @@
-package pl.sda.OrangeJavaPL2.firstRestApi;
+package pl.sda.OrangeJavaPL2.restapi;
 
 import org.springframework.context.annotation.Profile;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+
 @Profile("prd")
 @RestController
-public class PrdCustomRestController {
+public class CustomRestControllerPrd {
 
-    @GetMapping(path = "/hello")
 
-    public String helloPrd() {
-        return "Heloł from PROD";
+    @GetMapping("/hello")
+    public String hello(){
+        return "Hello ByczQ from Prd";
     }
+
 
 }

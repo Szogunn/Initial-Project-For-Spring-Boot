@@ -1,24 +1,31 @@
 package pl.sda.OrangeJavaPL2.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import jakarta.persistence.*;
+import lombok.*;
 
+import java.math.BigDecimal;
 
-@Data
-@NoArgsConstructor
+@Entity // Database entity-object to map
+@Setter // Required for entity
+@Getter // Required for entity
+@NoArgsConstructor // Required for entity
 @AllArgsConstructor
-@Entity
+@ToString
+@Table(name = "breads") // Change default name to custom one
 public class Bread {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
-    private String name;
-    private double price;
+    @Id // Required for entity
+    @GeneratedValue(strategy = GenerationType.IDENTITY) // Autoincrement id with every single object
+    Long id;
+    String name;
+    @Enumerated(EnumType.STRING)
+    BreadType breadType;
+    @Column(name = "price_in_pln") // Change default name to custom one
+    BigDecimal price;
 
+    public Bread(String name, BreadType breadType, BigDecimal price) {
+        this.name = name;
+        this.breadType = breadType;
+        this.price = price;
+    }
 }
